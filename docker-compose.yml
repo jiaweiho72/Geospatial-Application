@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build:
+      context: ./backend
+    image: blockfindercontainers-sp7as:backend
+    container_name: blockfindercontainers-backend
+    # environment:
+    #   POSTGRES_USER: ${POSTGRES_USER}
+    #   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    #   POSTGRES_PORT: ${POSTGRES_PORT}
+    #   POSTGRES_HOST: ${POSTGRES_HOST}
+    #   POSTGRES_DB: ${POSTGRES_DB}
+    #   ROOT_URL_BACKEND: ${ROOT_URL_BACKEND}
+    ports:
+      - "8000:8000"
+
+  frontend:
+      build:
+        context: ./frontend
+      # depends_on:
+      #   - backend
+      image: blockfindercontainers-sp7as:frontend
+      container_name: blockfindercontainers-frontend
+      ports:
+        - "3000:3000"
+
+volumes:
+  postgres_data:
